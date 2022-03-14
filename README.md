@@ -137,5 +137,5 @@ Thanks to Teligen & Strategy Analytics for this opportunity!
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: linkedin.com/in/amitesh-nagarkar-506941117
+[linkedin-url]: https://www.linkedin.com/in/amitesh-nagarkar-506941117/
 [product-screenshot]: images/screenshot.png
