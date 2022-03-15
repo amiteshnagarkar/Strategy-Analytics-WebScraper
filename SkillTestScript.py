@@ -62,7 +62,7 @@ def urlscraper():
     iPhone_13_Pro_Max = '/html/body/div[2]/div[3]/div/div/div/article/div/div[3]/div/div[13]/div/div/a/div[2]/div/div[1]/div'
     iPhone_12_5G = '/html/body/div[2]/div[3]/div/div/div/article/div/div[3]/div/div[20]/div/div/a/div[2]/div/div[1]/div'
     iPhone_11 = '/html/body/div[2]/div[3]/div/div/div/article/div/div[3]/div/div[23]/div/div/a/div[2]/div/div[1]/div'
-    #next page:
+    xpath_list = [iPhone_13, iPhone_SE_3rd_Gen, iPhone_13_Pro, iPhone_13_Pro_Max, iPhone_12_5G, iPhone_11]
 
 
 
@@ -87,22 +87,30 @@ def urlscraper():
     link.click()
     driver.implicitly_wait(5)
 
-    #loop this
-    link = driver.find_element(By.XPATH, iPhone_13)
-    link.click()
-    url_list.append(driver.current_url)
-    print (url_list)
+
+
     
+    for phones in range(len(xpath_list)):
 
-    # goes back to home page again
-    driver.get(o2_website)
-    link = driver.find_element(By.XPATH, see_all_xpath)
-    link.click()
+        #loop this for different phones
+        link = driver.find_element(By.XPATH, xpath_list[phones])
+        link.click()
+        url_list.append(driver.current_url)
+        #print (url_list)
 
-    #goes to see all page again
-    link = driver.find_element(By.XPATH, show_all_xpath)
-    link.click()
-    driver.implicitly_wait(5)
+        # goes back to home page again
+        driver.get(o2_website)
+        link = driver.find_element(By.XPATH, see_all_xpath)
+        link.click()
+
+        #goes to see all page again
+        link = driver.find_element(By.XPATH, show_all_xpath)
+        link.click()
+        driver.implicitly_wait(5)
+
+    pass
+
+    print (url_list)
 
 
 if __name__ == "__main__":
