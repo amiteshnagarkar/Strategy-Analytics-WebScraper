@@ -15,7 +15,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 import pandas as pd
-
 import matplotlib.pyplot as plt
 
 #RE-RUN IF U GET THIS - selenium.common.exceptions.WebDriverException: Message: target frame detached
@@ -193,32 +192,24 @@ def iPhoneScraper():
     df.to_csv('O2_iPhones.csv', index=False)
 
 
+
+
+
+
     
 def make_graph():
-    plt.rcParams["figure.figsize"] = [10, 10]
-    plt.rcParams["figure.autolayout"] = True
-
-    headers = ['Phone_Name', 'Upfront_Cost', 'Monthly_Cost']
-
+    plt.style.use('bmh')
+    headers = ['Phone_Name', 'Upfront_Cost']
     df = pd.read_csv('O2_iPhones.csv', names=headers)
-    print(df)
-    df.Upfront_Cost=pd.to_numeric(df.Upfront_Cost)
-    df.Monthly_Cost=pd.to_numeric(df.Monthly_Cost)
+    df.head()
+   
+    x = df['Phone_Name']
+    y = df['Upfront_Cost']
 
-    plot = df.set_index('Phone_Name').plot()
-
-    plt.show()
-
-
-    #plot = dtf.plot()
-    fig = plot.get_figure()
-    fig.savefig("output.png")
-
-
-
-
-
+    fig, ax = plt.subplots(figsize=(20,20))
+    ax.plot(x,y)
+    plt.savefig('test.png')
 
 if __name__ == "__main__":
-    iPhoneScraper()
-    #make_graph()
+    #iPhoneScraper()
+    make_graph()
