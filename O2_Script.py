@@ -14,6 +14,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import time
 
+import pandas as pd
+
+#RE-RUN IF U GET THIS - selenium.common.exceptions.WebDriverException: Message: target frame detached
+
 PATH = Service("/Users/amiteshnagarkar/Python/SA-Skills-Test/driver/chromedriver")
 
 #block images and javascript requests to speed things up.
@@ -131,6 +135,9 @@ def iPhoneScraper():
 
         print("going to basket")
 
+
+        
+
         #grab data
         phone_name = driver.find_element(By.CSS_SELECTOR, 'div.card-title').text
         driver.implicitly_wait(2)
@@ -147,8 +154,13 @@ def iPhoneScraper():
         #add to list
         phone_name_list.append([phone_name, phone_model_and_month_plan, phone_upfront_cost, phone_monthly_cost, phone_tariff, phone_first_offer])
 
+        #driver.implicitly_wait(3)
 
+        #take screenshot
+        driver.save_screenshot(('images/O2_iP_Screens/images/%s.png') %(xpath_list[phones]))
 
+    
+        driver.implicitly_wait(3)
         driver.back()
         driver.implicitly_wait(3)
         #OR
@@ -168,9 +180,10 @@ def iPhoneScraper():
         driver.implicitly_wait(3)
 
     print (phone_name_list)
-    driver.quit();
+    driver.quit()
 
-
+    df = pd.DataFrame(phone_name_list, columns=["Phone Name", "Model & Month", "Upfront Cost", "Monthly Cost", "Phone Tariff", "1'st Offer"])
+    df.to_csv('O2_iPhones.csv', index=False)
     
 
 
