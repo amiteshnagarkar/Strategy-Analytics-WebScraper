@@ -2,7 +2,7 @@ from urllib.request import urlopen
 import re
 from bs4 import BeautifulSoup
 import requests
-import pandas as pd
+import pandas as panda
 from datetime import date
 from datetime import datetime
 
@@ -14,8 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import time
 
-import pandas as pd
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plot
 
 #RE-RUN IF U GET THIS - selenium.common.exceptions.WebDriverException: Message: target frame detached
 
@@ -188,8 +187,8 @@ def iPhoneScraper():
     print (phone_name_list)
     driver.quit()
 
-    df = pd.DataFrame(phone_name_list, columns=["Phone_Name", "Model_Month", "Upfront_Cost", "Monthly_Cost", "Phone_Tariff", "First_Offer"])
-    df.to_csv('O2_iPhones.csv', index=False)
+    dataFrame = panda.DataFrame(phone_name_list, columns=["Phone_Name", "Model_Month", "Upfront_Cost", "Monthly_Cost", "Phone_Tariff", "First_Offer"])
+    dataFrame.to_csv('O2_iPhones.csv', index=False)
 
 
 
@@ -198,17 +197,13 @@ def iPhoneScraper():
 
     
 def make_graph():
-    plt.style.use('bmh')
-    headers = ['Phone_Name', 'Upfront_Cost']
-    df = pd.read_csv('O2_iPhones.csv', names=headers)
-    df.head()
-   
-    x = df['Phone_Name']
-    y = df['Upfront_Cost']
-
-    fig, ax = plt.subplots(figsize=(20,20))
-    ax.plot(x,y)
-    plt.savefig('test.png')
+    dataFrame = panda.read_csv('O2_iPhones.csv')
+    ax = dataFrame.set_index('Phone_Name').plot()
+    ax.set_xlabel('X Label')
+    ax.set_ylabel('Y Label')
+    #plot.xticks(rotation=90);
+    plot.autoscale(enable=True, axis='both', tight=None)
+    plot.savefig('O2_iPhones_Graph.png')
 
 if __name__ == "__main__":
     #iPhoneScraper()
