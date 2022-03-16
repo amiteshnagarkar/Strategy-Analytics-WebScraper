@@ -16,6 +16,8 @@ import time
 
 import pandas as pd
 
+import matplotlib.pyplot as plt
+
 #RE-RUN IF U GET THIS - selenium.common.exceptions.WebDriverException: Message: target frame detached
 
 PATH = Service("/Users/amiteshnagarkar/Python/SA-Skills-Test/driver/chromedriver")
@@ -66,6 +68,7 @@ def iPhoneScraper():
    
     #this loop should collect all info needed for iPhones
     phone_name_list = []
+    image_counter = 0;
     for phones in range(len(xpath_list)):
 
         driver.implicitly_wait(3)
@@ -144,8 +147,10 @@ def iPhoneScraper():
         phone_model_and_month_plan = driver.find_element(By.CSS_SELECTOR, 'div.card-sentence').text
         driver.implicitly_wait(2)
         phone_upfront_cost = driver.find_element(By.CSS_SELECTOR, 'div.upfront-cost.ng-binding.ng-isolate-scope').text
+        phone_upfront_cost = phone_upfront_cost.lstrip('£');
         driver.implicitly_wait(2)
         phone_monthly_cost = driver.find_element(By.CSS_SELECTOR, 'div.upfront-cost.ng-binding.ng-isolate-scope').text
+        phone_monthly_cost = phone_monthly_cost.lstrip('£');
         driver.implicitly_wait(2)
         phone_tariff = driver.find_element(By.CSS_SELECTOR, 'div.card-sentence').text
         driver.implicitly_wait(2)
@@ -157,7 +162,9 @@ def iPhoneScraper():
         #driver.implicitly_wait(3)
 
         #take screenshot
-        driver.save_screenshot(('images/O2_iP_Screens/images/%s.png') %(xpath_list[phones]))
+        image_filename = 'images/O2_iP_Screens/images/screenshot_' + str(phone_name) + '_' + str(image_counter) + '.png'
+        driver.save_screenshot(image_filename);
+        image_counter += 1;
 
     
         driver.implicitly_wait(3)
@@ -182,13 +189,30 @@ def iPhoneScraper():
     print (phone_name_list)
     driver.quit()
 
-    df = pd.DataFrame(phone_name_list, columns=["Phone Name", "Model & Month", "Upfront Cost", "Monthly Cost", "Phone Tariff", "1'st Offer"])
+    df = pd.DataFrame(phone_name_list, columns=["Phone_Name", "Model_Month", "Upfront_Cost", "Monthly_Cost", "Phone_Tariff", "First_Offer"])
     df.to_csv('O2_iPhones.csv', index=False)
+
+
     
+def make_graph():
+    plt.rcParams["figure.figsize"] = [10, 10]
+    plt.rcParams["figure.autolayout"] = True
+
+    headers = ['Phone_Name', 'Upfront_Cost', 'Monthly_Cost']
+
+    df = pd.read_csv('O2_iPhones.csv', names=headers)
+    print(df)
+    df.Upfront_Cost=pd.to_numeric(df.Upfront_Cost)
+    df.Monthly_Cost=pd.to_numeric(df.Monthly_Cost)
+
+    plot = df.set_index('Phone_Name').plot()
+
+    plt.show()
 
 
-
-
+    #plot = dtf.plot()
+    fig = plot.get_figure()
+    fig.savefig("output.png")
 
 
 
@@ -196,4 +220,5 @@ def iPhoneScraper():
 
 
 if __name__ == "__main__":
-    iPhoneScraper();
+    iPhoneScraper()
+    #make_graph()
