@@ -34,7 +34,7 @@ show_all_xpath = "/html/body/div[2]/div[3]/div/div/div/article/div/div[4]/button
 driver = webdriver.Chrome(service=PATH)
 phone_name_list = []
 
-#Main Function
+#MAIN FUNCTION
 def iPhoneScraper():
     print ("Web Scraper in progress, please wait...")
     go_to_o2()
@@ -154,7 +154,7 @@ def iphone_data_collector():
         phone_upfront_cost = driver.find_element(By.CSS_SELECTOR, 'div.upfront-cost.ng-binding.ng-isolate-scope').text
         phone_upfront_cost = phone_upfront_cost.lstrip('£');
         driver.implicitly_wait(2)
-        phone_monthly_cost = driver.find_element(By.CSS_SELECTOR, 'div.upfront-cost.ng-binding.ng-isolate-scope').text
+        phone_monthly_cost = driver.find_element(By.CSS_SELECTOR ,'div#month-total.upfront-cost.total-upfront-cost.ng-binding.ng-isolate-scope').text
         phone_monthly_cost = phone_monthly_cost.lstrip('£');
         driver.implicitly_wait(2)
         phone_tariff = driver.find_element(By.CSS_SELECTOR, 'div.card-sentence').text
