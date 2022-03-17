@@ -1,22 +1,23 @@
 from urllib.request import urlopen
-import re
-from bs4 import BeautifulSoup
-import requests
+#import re
+#from bs4 import BeautifulSoup
+#import requests
 import pandas as panda
-from datetime import date
-from datetime import datetime
+#from datetime import date
+#from datetime import datetime
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+#from selenium.webdriver.support.ui import WebDriverWait
+#from selenium.webdriver.support import expected_conditions as EC
 
 import time
 
 import matplotlib.pyplot as plot
 
 #RE-RUN IF U GET THIS ERROR - selenium.common.exceptions.WebDriverException: Message: target frame detached
+#Todo: debug and fix later.
 
 #Need to store this as an environmental variable
 PATH = Service("/Users/amiteshnagarkar/Python/SA-Skills-Test/driver/chromedriver")
@@ -34,18 +35,6 @@ show_all_xpath = "/html/body/div[2]/div[3]/div/div/div/article/div/div[4]/button
 driver = webdriver.Chrome(service=PATH)
 phone_name_list = []
 
-#MAIN FUNCTION
-def iPhoneScraper():
-    print ("Web Scraper in progress, please wait...")
-    go_to_o2()
-    print ("We are scraping from the O2 Website...")
-    iphone_data_collector()
-    print ("Creating CSV file")
-    create_csv()
-    print ("Creating a beautiful graph.")
-    make_graph()
-    print("Sorry for the wait, all done now :)")
-    driver.quit()
 
 #Graph Maker    
 def make_graph():
@@ -56,6 +45,7 @@ def make_graph():
     plot.autoscale(enable=True, axis='both', tight=None)
     plot.savefig('O2_iPhones_Graph.png')
 
+#Invoke browser, got to o2 site and list all iphones
 def go_to_o2():
     o2_website = "https://www.o2.co.uk/iphone"
     see_all_xpath = "/html/body/section/div/div/section[5]/div/div/div[6]/div/div/section/div/div[2]/div/div/div/div/div/div/a/span[1]"
@@ -189,6 +179,22 @@ def iphone_data_collector():
         link.click()
         driver.implicitly_wait(3)
 
+    pass
+
+#MAIN FUNCTION
+def iPhoneScraperMain():
+    print ("Web Scraper in progress, please wait...")
+    go_to_o2()
+    print ("We are scraping from the O2 Website...")
+    print("INFO: If you get the below error, please re-run the script.")
+    print("selenium.common.exceptions.WebDriverException: Message: target frame detached")
+    iphone_data_collector()
+    print ("Creating CSV file")
+    create_csv()
+    print ("Creating a beautiful graph.")
+    make_graph()
+    print("Sorry for the wait, all done now :)")
+    driver.quit()
 
 if __name__ == "__main__":
-    iPhoneScraper()
+    iPhoneScraperMain()
