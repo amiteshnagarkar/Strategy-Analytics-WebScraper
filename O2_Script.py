@@ -36,10 +36,55 @@ phone_name_list = []
 
 #Main Function
 def iPhoneScraper():
-    print ("Web Scraper functioning, please wait till we get all iPhones from O2...")
-
+    print ("Web Scraper in progress, please wait...")
     go_to_o2()
+    print ("We are scraping from the O2 Website...")
+    iphone_data_collector()
+    print ("Creating CSV file")
+    create_csv()
+    print ("Creating a beautiful graph.")
+    make_graph()
+    print("Sorry for the wait, all done now :)")
+    driver.quit()
 
+#Graph Maker    
+def make_graph():
+    dataFrame = panda.read_csv('O2_iPhones.csv')
+    ax = dataFrame.set_index('Phone_Name').plot()
+    ax.set_xlabel('X Label')
+    ax.set_ylabel('Y Label')
+    plot.autoscale(enable=True, axis='both', tight=None)
+    plot.savefig('O2_iPhones_Graph.png')
+
+def go_to_o2():
+    o2_website = "https://www.o2.co.uk/iphone"
+    see_all_xpath = "/html/body/section/div/div/section[5]/div/div/div[6]/div/div/section/div/div[2]/div/div/div/div/div/div/a/span[1]"
+    #show_all_xpath = "/html/body/div[2]/div[3]/div/div/div/article/div/div[4]/button"
+    accept_cookies = "/html/body/div[6]/div/div/div[2]/button[1]"
+
+    driver.implicitly_wait(5)
+    driver.get(o2_website)
+    driver.implicitly_wait(5)
+    link = driver.find_element(By.XPATH, accept_cookies)
+    link.click()
+    driver.implicitly_wait(5)
+
+    #See All iphones
+    link = driver.find_element(By.XPATH, see_all_xpath)
+    link.click()
+    driver.implicitly_wait(5)
+
+    #Show All iphones
+    link = driver.find_element(By.XPATH, show_all_xpath)
+    link.click()
+    driver.implicitly_wait(3)
+
+def create_csv():
+    #Create CSV
+    dataFrame = panda.DataFrame(phone_name_list, columns=["Phone_Name", "Model_Month", "Upfront_Cost", "Monthly_Cost", "Phone_Tariff", "First_Offer"])
+    dataFrame.to_csv('O2_iPhones.csv', index=False)
+
+def iphone_data_collector():
     #xPATHS for iPhones:
     iPhone_13 = '/html/body/div[2]/div[3]/div/div/div/article/div/div[3]/div/div[1]/div/div/a/div[2]/div/div[1]'
     iPhone_SE_3rd_Gen = '/html/body/div[2]/div[3]/div/div/div/article/div/div[3]/div/div[5]/div/div/a/div[2]/div/div[1]/div'
@@ -139,55 +184,6 @@ def iPhoneScraper():
         link = driver.find_element(By.XPATH, show_all_xpath)
         link.click()
         driver.implicitly_wait(3)
-
-    create_csv()
-    make_graph()
-    print("Sorry for the wait, all done :)")
-    driver.quit()
-
-    #Create CSV
-    #dataFrame = panda.DataFrame(phone_name_list, columns=["Phone_Name", "Model_Month", "Upfront_Cost", "Monthly_Cost", "Phone_Tariff", "First_Offer"])
-    #dataFrame.to_csv('O2_iPhones.csv', index=False)
-
-    
-
-#Graph Maker    
-def make_graph():
-    dataFrame = panda.read_csv('O2_iPhones.csv')
-    ax = dataFrame.set_index('Phone_Name').plot()
-    ax.set_xlabel('X Label')
-    ax.set_ylabel('Y Label')
-    plot.autoscale(enable=True, axis='both', tight=None)
-    plot.savefig('O2_iPhones_Graph.png')
-
-
-def go_to_o2():
-    o2_website = "https://www.o2.co.uk/iphone"
-    see_all_xpath = "/html/body/section/div/div/section[5]/div/div/div[6]/div/div/section/div/div[2]/div/div/div/div/div/div/a/span[1]"
-    #show_all_xpath = "/html/body/div[2]/div[3]/div/div/div/article/div/div[4]/button"
-    accept_cookies = "/html/body/div[6]/div/div/div[2]/button[1]"
-
-    driver.implicitly_wait(5)
-    driver.get(o2_website)
-    driver.implicitly_wait(5)
-    link = driver.find_element(By.XPATH, accept_cookies)
-    link.click()
-    driver.implicitly_wait(5)
-
-    #See All iphones
-    link = driver.find_element(By.XPATH, see_all_xpath)
-    link.click()
-    driver.implicitly_wait(5)
-
-    #Show All iphones
-    link = driver.find_element(By.XPATH, show_all_xpath)
-    link.click()
-    driver.implicitly_wait(3)
-
-def create_csv():
-    #Create CSV
-    dataFrame = panda.DataFrame(phone_name_list, columns=["Phone_Name", "Model_Month", "Upfront_Cost", "Monthly_Cost", "Phone_Tariff", "First_Offer"])
-    dataFrame.to_csv('O2_iPhones.csv', index=False)
 
 
 if __name__ == "__main__":
