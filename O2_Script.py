@@ -166,6 +166,10 @@ def iphone_data_collector():
 
         #Screenshot
         image_filename = 'images/O2_iP_Screens/images/screenshot_' + str(phone_name) + '_' + str(image_counter) + '.png'
+        #Scroll works well to screenshot section.
+        driver.execute_script("scrollBy(0,-500);")
+        time.sleep(2)
+        driver.execute_script("scrollBy(0,400);")
         driver.save_screenshot(image_filename);
         image_counter += 1;
 
