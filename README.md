@@ -15,10 +15,10 @@
 
   <p align="center">
     <br />
-    <a href="linkedin.com/in/amitesh-nagarkar-506941117">View Demo</a>
+    <a href="linkedin.com/in/amitesh-nagarkar-506941117">View O2 Demo</a>
+     <a href="linkedin.com/in/amitesh-nagarkar-506941117">View EE Demo</a>
   </p>
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -38,9 +38,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -48,93 +45,88 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Screen Shot][product-screenshot]](https://www.linkedin.com/in/amitesh-nagarkar-506941117/)
 
-A Python web-scraping script.
+Python web-scraping scripts that get data from the O2 and EE website.
 
-Lorem Ipsum:
-* Lorem Ipsum
-* Lorem Ipsum
-* Lorem Ipsum
+O2 Script:
+* Gets all Pay Monthly iPhone data (Phone Name, Model & Month, Upfront Cost, Monthly Cost, Data (need to update code), First Offer) - at default capacity, default colour, O2's top pick plan, no extras, no spend cap, no extras, no accessories, no trade in - includes CSV, Graph and Screenshots.
+
+EE Script:
+* Gets the following Pay Monthly SIM Only 24 Month Contracts (Sim Plan Name, Monthly Cost, Coverage Information) - 1GB Data, 160GB Data, 200GB Data - includes CSV, Graph and Screenshots.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/#)
+* [Python](https://www.python.org/)
+* [Selenium](https://www.selenium.dev/)
+* [Pandas](https://pandas.pydata.org/docs/index.html#)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Lorem Ipsum
-
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* python3
-  ```sh
-  python3 SkillTestScript.py
-  ```
+Make sure you have installed all of the following prerequisites on your development machine.
+* Python3, Pip, Git, Chrome Browser. I would also recommend using a virtual env.
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your script.
+How to run the two scripts:
 
-1. Lorem Ipsum
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/amiteshnagarkar/Strategy-Analytics-WebScraper
    ```
-3. Install packages
+2. Install packages
    ```sh
    pip install -r requirements.txt
    ```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+3. Run the O2 Script
+   ```sh
+   python3 O2_Script.py
+   ```   
+4. Run the EE Script
+   ```sh
+   python3 EE_Script.py
+   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - amitesh@example.com
+Amitesh Nagarkar - [@amiteshnagarkar](https://www.linkedin.com/in/amitesh-nagarkar-506941117/)
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/amiteshnagarkar/Strategy-Analytics-WebScraper](https://github.com/amiteshnagarkar/Strategy-Analytics-WebScraper)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+<!-- LICENSE -->
+## LICENSE
+
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Thanks to Teligen & Strategy Analytics for this opportunity!
+Thanks Strategy Analytics for this opportunity.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/amitesh-nagarkar-506941117/
