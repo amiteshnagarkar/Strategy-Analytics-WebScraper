@@ -20,8 +20,7 @@ from selenium.webdriver.chrome.options import Options
 #Todo: debug and fix later.
 
 #Need to store this as an environmental variable
-PATH = Service("/Users/amiteshnagarkar/Python/SA-Skills-Test/driver/chromedriver")
-
+PATH = Service("./driver/chromedriver")
 
 #Global
 show_all_xpath = "/html/body/div[2]/div[3]/div/div/div/article/div/div[4]/button"

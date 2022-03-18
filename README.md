@@ -38,7 +38,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#license">License</a></li>
+    <li><a href="#notes">Notes</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -75,12 +75,13 @@ EE Script:
 
 ### Prerequisites
 
-Make sure you have installed all of the following prerequisites on your development machine.
+Make sure you have the following prerequisites on your development machine.
 * Python3, Pip, Git, Chrome Browser. I would also recommend using a virtual env.
+* The Chromedriver used is available in the repository in driver folder. The scripts assumes the driver is available in this current folder.
 
 ### Installation
 
-How to run the two scripts:
+How to run the two scripts (Please note: the .csv and graph are generated in the current directory and the images are generated in the images directory):
 
 1. Clone the repo
    ```sh
@@ -111,17 +112,29 @@ Project Link: [https://github.com/amiteshnagarkar/Strategy-Analytics-WebScraper]
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-<!-- LICENSE -->
-## LICENSE
+<!-- NOTES -->
+## Notes
 
+* The O2/EE website can change. The relative XPath will need to be altered as the script may not work as expected. Please view the demo if this is the case.
 
+Further enhancements I would make in a commerical enviornment: 
+* Refrain from using time.sleep()
+* Set Browser zoom level to 100 percent.
+* Refrain from using XPATH - as changes in the UI of the target site would mean these scripts will not function. Use CSSSELECTOR OR ID (would allow more data to be collected, more efficently, rather than harcoding the element).
+* Use a design pattern.
+* Write tests!
+* Carry out further data cleansing.
+
+Known Problems: 
+* First run may take some time as the chromedriver may need time to load.
+* Re-run if you get this error : selenium.common.exceptions.WebDriverException: Message: target frame detached
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Thanks Strategy Analytics for this opportunity.
+Thanks Strategy Analytics for this opportunity. Hope to work on projects like these, in a commercial environment, where I can gather more data, create more visually appealing, complex, but easy to understand, graphs.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

@@ -13,7 +13,7 @@ import matplotlib.pyplot as plot
 #Todo: debug and fix later.
 
 #Need to store this as an environmental variable
-PATH = Service("/Users/amiteshnagarkar/Python/SA-Skills-Test/driver/chromedriver")
+PATH = Service("./driver/chromedriver")
 
 #block images and javascript requests to speed things up.
 chrome_prefs = {
