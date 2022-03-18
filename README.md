@@ -95,11 +95,11 @@ _Below is an example of how you can instruct your audience on installing and set
 1. Lorem Ipsum
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/amiteshnagarkar/Strategy-Analytics-WebScraper
    ```
 3. Install packages
    ```sh
-   install lorem ipsum
+   pip install -r requirements.txt
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
