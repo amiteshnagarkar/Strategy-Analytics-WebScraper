@@ -58,10 +58,13 @@ def SimOnlyDataCollector():
 
     OneGbData = "/html/body/div[2]/div[2]/main/div[2]/div/div/div[2]/div/div[1]/div[2]/div[2]/div[2]/div[1]/div/div[1]/div/div[2]/div/div/div[3]/button"
     OneSixtyGBData = "/html/body/div[2]/div[2]/main/div[2]/div/div/div[2]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div/div[1]/div/div[2]/div/div/div[3]/button"
+    TwoHundredGBData = "/html/body/div[2]/div[2]/main/div[2]/div/div/div[2]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div/div[1]/div/div[2]/div/div/div[3]/button"
+    UnlimitedGBData = "/html/body/div[2]/div[2]/main/div[2]/div/div/div[2]/div/div[1]/div[2]/div[2]/div[2]/div[6]/div/div/div/div[1]/div/div[2]/div/div/div[3]/button"
 
-    simOnlyXpaths = [OneGbData, OneSixtyGBData]
+    simOnlyXpaths = [OneGbData, OneSixtyGBData, TwoHundredGBData, UnlimitedGBData]
     driver.switch_to.default_content()
 
+    image_counter = 0
     for sims in range(len(simOnlyXpaths)):
 
         #Select Specific Sim
@@ -81,9 +84,19 @@ def SimOnlyDataCollector():
         #Get Sim Plan Information
         simPlanName = driver.find_element(By.XPATH, '/html/body/div[2]/div[3]/main/div[2]/div/div[2]/section/div/article/div[1]/div/div[1]/div[2]/small[2]').text
         driver.implicitly_wait(3)
+        simMonthlyCost = driver.find_element(By.CSS_SELECTOR, 'strong.c25-cart__package-pay-monthly-value').text
+        simMonthlyCost = simMonthlyCost.lstrip('£')
+        driver.implicitly_wait(3)
+        simCoverageInfo = driver.find_element(By.CSS_SELECTOR, 'p.notification__text').text
+        driver.implicitly_wait(3)
 
         #Add Collected Information to List
-        simPlanNameList.append([simPlanName])
+        simPlanNameList.append([simPlanName, simMonthlyCost, simCoverageInfo])
+
+        #Screenshot
+        image_filename = 'images/EE_Sim_Only_Screens/images/screenshot_' + str(simPlanName) + '_' + str(image_counter) + '.png'
+        driver.save_screenshot(image_filename)
+        image_counter += 1
 
         #Remove Plan
         driver.implicitly_wait(3)
@@ -107,11 +120,22 @@ def SimOnlyDataCollector():
         driver.execute_script("arguments[0].click();", link)
         driver.implicitly_wait(5)
 
+    
     pass
 
-    print(simPlanNameList)
+
+def CreateCsv():
+    dataFrame = panda.DataFrame(simPlanNameList, columns=["Sim_Plan_Name", "Monthly_Cost", "Coverage Info"])
+    dataFrame.to_csv('EE_Sim_Only_Plans.csv', index=False)
 
 
+def MakeGraph():
+    dataFrame = panda.read_csv('EE_Sim_Only_Plans.csv')
+    ax = dataFrame.set_index('Sim_Plan_Name').plot()
+    ax.set_xlabel('X Label')
+    ax.set_ylabel('Y Label')
+    plot.autoscale(enable=True, axis='both', tight=None)
+    plot.savefig('EE_Sim_Only_Plans_Graph.png')
     
 
 
@@ -119,16 +143,16 @@ def SimOnlyDataCollector():
 def SimOnlyScraperMain():
     print ("Web Scraper in progress, please wait...")
     GoToEe()
-    print ("We are scraping from the O2 Website...")
+    print ("We are scraping from the EE Website...")
     print("INFO: If you get the below error, please re-run the script.")
     print("selenium.common.exceptions.WebDriverException: Message: target frame detached")
     SimOnlyDataCollector()
     print ("Creating CSV file")
-    #CreateCsv()
+    CreateCsv()
     print ("Creating a beautiful graph.")
-    #MakeGraph()
+    MakeGraph()
     print("Sorry for the wait, all done now :)")
-    #driver.quit()
+    driver.quit()
 
 if __name__ == "__main__":
     SimOnlyScraperMain()
