@@ -15,13 +15,9 @@
 
   <p align="center">
     <br />
-    <a href="linkedin.com/in/amitesh-nagarkar-506941117">View O2 Demo</a>
+    <a href="https://www.youtube.com/watch?v=ac09q0invxM">View Demo</a>
   </p>
 
-  <p align="center">
-    <br />
-     <a href="linkedin.com/in/amitesh-nagarkar-506941117">View EE Demo</a>
-  </p>
 </div>
 
 
@@ -148,4 +144,4 @@ Thanks Strategy Analytics for this opportunity. Hope to work on projects like th
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/amitesh-nagarkar-506941117/
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/O2_Graph.png

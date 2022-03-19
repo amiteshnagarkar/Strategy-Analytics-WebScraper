@@ -119,10 +119,13 @@ def CreateCsv():
 def MakeGraph():
     dataFrame = panda.read_csv('EE_Sim_Only_Plans.csv')
     ax = dataFrame.set_index('Sim_Plan_Name').plot()
-    ax.set_xlabel('X Label')
-    ax.set_ylabel('Y Label')
+    
+    ax.set_xlabel('Name of Plan', fontsize=10)
+    ax.set_ylabel('Monthly Cost (£)', fontsize=10)
+    ax.set_title('EE - Sim Only Plan Comparison', fontsize=18)
+    plot.xticks(fontsize=6)
     plot.autoscale(enable=True, axis='both', tight=None)
-    plot.savefig('EE_Sim_Only_Plans_Graph.png')
+    plot.savefig('EE_Sim_Only_Plans_Graph.png', dpi=200)
     
 
 

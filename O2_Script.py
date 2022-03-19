@@ -28,10 +28,12 @@ phone_name_list = []
 def make_graph():
     dataFrame = panda.read_csv('O2_iPhones.csv')
     ax = dataFrame.set_index('Phone_Name').plot()
-    ax.set_xlabel('X Label')
-    ax.set_ylabel('Y Label')
+    ax.set_xlabel('iPhone Name', fontsize=10)
+    ax.set_ylabel('Monthly Cost (£)', fontsize=10)
+    ax.set_title('O2 - iPhone Pay Monthly Comparison', fontsize=18)
+    plot.xticks(fontsize=3)
     plot.autoscale(enable=True, axis='both', tight=None)
-    plot.savefig('O2_iPhones_Graph.png')
+    plot.savefig('O2_iPhones_Graph.png', dpi=200)
 
 #Invoke browser, got to o2 site and list all iphones
 def go_to_o2():
