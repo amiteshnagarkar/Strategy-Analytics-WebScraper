@@ -9,17 +9,8 @@ import time
 
 import matplotlib.pyplot as plot
 
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-from selenium.webdriver.chrome.options import Options
-
-
-#RE-RUN IF U GET THIS ERROR - selenium.common.exceptions.WebDriverException: Message: target frame detached
-#Todo: debug and fix later.
-
-#Need to store this as an environmental variable
 PATH = Service("./driver/chromedriver")
 
 #Global
@@ -28,19 +19,16 @@ driver = webdriver.Chrome(service=PATH)
 simPlanNameList = []
 
 def GoToEe():
-    print('Inside GoToEe');
+    print("Opening the browser and loading EE.")
     eeWebsite = "https://shop.ee.co.uk/sim-only"
     iframeAcceptCookiesClass = "truste_popframe"
     viewAllSimPlans = "/html/body/div[2]/div[2]/main/div[2]/div/div/div[2]/div/div[1]/div[2]/div[2]/button"
 
     driver.get(eeWebsite)
     driver.implicitly_wait(10)
-    print('Finding iframe :' + str(iframeAcceptCookiesClass));
     iframe = driver.find_element(By.CLASS_NAME, iframeAcceptCookiesClass)
-    print('Frame = ' + str(iframe));
     driver.switch_to.frame(iframe)
     link = driver.find_element(By.CLASS_NAME, "call")
-    print('Trying to accept cookies..');
     link.click();
     driver.switch_to.parent_frame()
     
@@ -49,7 +37,6 @@ def GoToEe():
     link = driver.find_element(By.XPATH, viewAllSimPlans)
     driver.execute_script("arguments[0].scrollIntoView();",link)
     driver.execute_script("arguments[0].click();", link)
-    #link.click()
     driver.implicitly_wait(10)
    
 
@@ -63,16 +50,14 @@ def SimOnlyDataCollector():
     simOnlyXpaths = [OneGbData, OneSixtyGBData, TwoHundredGBData, UnlimitedGBData]
     driver.switch_to.default_content()
 
+    print("Now getting phone data from EE site.")
+
     image_counter = 0
     for sims in range(len(simOnlyXpaths)):
 
         #Select Specific Sim
-
-        print("1")
         driver.implicitly_wait(3)
-        print("2")
         link = driver.find_element(By.XPATH, simOnlyXpaths[sims])
-        print("3")
 
         driver.execute_script("arguments[0].scrollIntoView();",link)
         driver.execute_script("arguments[0].click();", link)        
@@ -100,21 +85,18 @@ def SimOnlyDataCollector():
         #Remove Plan
         driver.implicitly_wait(3)
         link = driver.find_element(By.XPATH, '/html/body/div[2]/div[3]/main/div[2]/div/div[2]/section/div/article/div[1]/div/div[2]/form/a')
-        #link.click()
         driver.execute_script("arguments[0].scrollIntoView();",link)
         driver.execute_script("arguments[0].click();", link)
 
         #Click on SIM ONLY on homepage
         driver.implicitly_wait(3)
         link = driver.find_element(By.XPATH, '/html/body/div[2]/div[5]/main/div[3]/div[2]/div/div/div/div/div/div[3]/div/div/section/section[1]/div/div/div/div/div/div/div[1]/div/div[3]/div/a/img')
-        #link.click()
         driver.execute_script("arguments[0].scrollIntoView();",link)
         driver.execute_script("arguments[0].click();", link)
 
         #View All Sim Plans
         driver.implicitly_wait(3)
         link = driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/main/div[2]/div/div/div[2]/div/div[1]/div[2]/div[2]/button')
-        #link.click()
         driver.execute_script("arguments[0].scrollIntoView();",link)
         driver.execute_script("arguments[0].click();", link)
         driver.implicitly_wait(5)
@@ -143,8 +125,11 @@ def SimOnlyScraperMain():
     print ("Web Scraper in progress, please wait...")
     GoToEe()
     print ("We are scraping from the EE Website...")
+    print("Please hold on...")
+    print("----------------------------------------------")
     print("INFO: If you get the below error, please re-run the script.")
     print("selenium.common.exceptions.WebDriverException: Message: target frame detached")
+    print("----------------------------------------------")
     SimOnlyDataCollector()
     print ("Creating CSV file")
     CreateCsv()

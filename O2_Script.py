@@ -9,25 +9,12 @@ import time
 
 import matplotlib.pyplot as plot
 
-#RE-RUN IF U GET THIS ERROR - selenium.common.exceptions.WebDriverException: Message: target frame detached
-#Todo: debug and fix later.
-
-#Need to store this as an environmental variable
 PATH = Service("./driver/chromedriver")
-
-#block images and javascript requests to speed things up.
-chrome_prefs = {
-    "profile.default_content_setting_values": {
-        "images": 2,
-        "javascript": 2,
-    }
-}
 
 #Global
 show_all_xpath = "/html/body/div[2]/div[3]/div/div/div/article/div/div[4]/button"
 driver = webdriver.Chrome(service=PATH)
 phone_name_list = []
-
 
 #Graph Maker    
 def make_graph():
@@ -40,9 +27,9 @@ def make_graph():
 
 #Invoke browser, got to o2 site and list all iphones
 def go_to_o2():
+    print("Opening the browser and loading O2.")
     o2_website = "https://www.o2.co.uk/iphone"
     see_all_xpath = "/html/body/section/div/div/section[5]/div/div/div[6]/div/div/section/div/div[2]/div/div/div/div/div/div/a/span[1]"
-    #show_all_xpath = "/html/body/div[2]/div[3]/div/div/div/article/div/div[4]/button"
     accept_cookies = "/html/body/div[6]/div/div/div[2]/button[1]"
 
     driver.implicitly_wait(5)
@@ -77,8 +64,7 @@ def iphone_data_collector():
     iPhone_11 = '/html/body/div[2]/div[3]/div/div/div/article/div/div[3]/div/div[23]/div/div/a/div[2]/div/div[1]/div'
     xpath_list = [iPhone_13, iPhone_SE_3rd_Gen, iPhone_13_Pro, iPhone_13_Pro_Max, iPhone_12_5G, iPhone_11]
 
-    #Collects specific information from iPhone
-    #phone_name_list = []
+    print("Now getting phone data from O2 site.")
     image_counter = 0;
     for phones in range(len(xpath_list)):
 
@@ -179,8 +165,11 @@ def iPhoneScraperMain():
     print ("Web Scraper in progress, please wait...")
     go_to_o2()
     print ("We are scraping from the O2 Website...")
+    print("Please hold on...")
+    print("----------------------------------------------")
     print("INFO: If you get the below error, please re-run the script.")
     print("selenium.common.exceptions.WebDriverException: Message: target frame detached")
+    print("----------------------------------------------")
     iphone_data_collector()
     print ("Creating CSV file")
     create_csv()
