@@ -1,11 +1,17 @@
+
+'''
+Amitesh Nagarkar
+
+Description: Scrapes data from EE site.
+
+'''
+
 from urllib.request import urlopen
 import pandas as panda
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-
-import time
 
 import matplotlib.pyplot as plot
 

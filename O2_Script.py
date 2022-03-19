@@ -1,3 +1,11 @@
+
+'''
+Amitesh Nagarkar
+
+Description: Scrapes data from O2 site.
+
+'''
+
 from urllib.request import urlopen
 import pandas as panda
 
