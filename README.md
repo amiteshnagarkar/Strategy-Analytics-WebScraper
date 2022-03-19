@@ -16,6 +16,10 @@
   <p align="center">
     <br />
     <a href="linkedin.com/in/amitesh-nagarkar-506941117">View O2 Demo</a>
+  </p>
+
+  <p align="center">
+    <br />
      <a href="linkedin.com/in/amitesh-nagarkar-506941117">View EE Demo</a>
   </p>
 </div>
@@ -50,7 +54,7 @@
 
 [![Screen Shot][product-screenshot]](https://www.linkedin.com/in/amitesh-nagarkar-506941117/)
 
-Python web-scraping scripts that get data from the O2 and EE website.
+Contains Python web-scraping scripts that get data from the O2 and EE website.
 
 O2 Script:
 * Gets all Pay Monthly iPhone data (Phone Name, Model & Month, Upfront Cost, Monthly Cost, Data (need to update code), First Offer) - at default capacity, default colour, O2's top pick plan, no extras, no spend cap, no extras, no accessories, no trade in - includes CSV, Graph and Screenshots.
@@ -127,6 +131,7 @@ Further enhancements I would make in a commerical enviornment:
 
 Known Problems: 
 * First run may take some time as the chromedriver may need time to load.
+* This script is heavily reliant on a good machine and strong wifi.
 * Re-run if you get this error : selenium.common.exceptions.WebDriverException: Message: target frame detached
 
 <p align="right">(<a href="#top">back to top</a>)</p>
