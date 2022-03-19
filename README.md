@@ -54,9 +54,15 @@ Contains Python web-scraping scripts that get data from the O2 and EE website.
 
 O2 Script:
 * Gets all Pay Monthly iPhone data (Phone Name, Model & Month, Upfront Cost, Monthly Cost, Data (need to update code), First Offer) - at default capacity, default colour, O2's top pick plan, no extras, no spend cap, no extras, no accessories, no trade in - includes CSV, Graph and Screenshots.
+* Where are the presented prices taken from? - Basket prior to checkout (same as screenshot).
 
 EE Script:
 * Gets the following Pay Monthly SIM Only 24 Month Contracts (Sim Plan Name, Monthly Cost, Coverage Information) - 1GB Data, 160GB Data, 200GB Data - includes CSV, Graph and Screenshots.
+* Where are the presented prices taken from? - Basket prior to checkout (same as screenshot).
+
+Additonal Details Collected:
+* Offers, Upfront Cost, Coverage Info.
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
